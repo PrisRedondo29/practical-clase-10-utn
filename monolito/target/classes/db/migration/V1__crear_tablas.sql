@@ -9,3 +9,4 @@ CREATE TABLE pedidos (
     cliente_id NUMBER NOT NULL,
     descripcion VARCHAR2(255) NOT NULL
 );
+

@@ -1,5 +1,7 @@
 package ar.edu.utn.ba.capacitacion.monolito.cliente.service;
 
+import ar.edu.utn.ba.capacitacion.monolito.cliente.dto.ClienteResponse;
+import ar.edu.utn.ba.capacitacion.monolito.cliente.dto.CrearClienteRequest;
 import ar.edu.utn.ba.capacitacion.monolito.cliente.entity.ClienteEntity;
 import ar.edu.utn.ba.capacitacion.monolito.cliente.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,13 @@ public class ClienteService {
     @Transactional(readOnly = true)
     public Optional<ClienteEntity> buscarPorId(Long id) {
         return clienteRepository.findById(id);
+    }
+
+    @Transactional
+    public ClienteResponse crearCliente(CrearClienteRequest request) {
+        ClienteEntity cliente = new ClienteEntity(request.nombre(), request.activo());
+        ClienteEntity guardado = clienteRepository.save(cliente);
+        return new ClienteResponse(guardado.getId());
     }
 }
 

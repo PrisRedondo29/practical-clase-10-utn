@@ -27,6 +27,11 @@ public class ClienteEntity {
     public ClienteEntity() {
     }
 
+    public ClienteEntity(String nombre, boolean activo) {
+        this.nombre = nombre;
+        this.activo = activo;
+    }
+
     public ClienteEntity(Long id, String nombre, boolean activo) {
         this.id = id;
         this.nombre = nombre;
