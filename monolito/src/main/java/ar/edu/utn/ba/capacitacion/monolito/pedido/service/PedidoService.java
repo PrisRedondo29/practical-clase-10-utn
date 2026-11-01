@@ -1,7 +1,6 @@
 package ar.edu.utn.ba.capacitacion.monolito.pedido.service;
 
-import ar.edu.utn.ba.capacitacion.monolito.cliente.entity.ClienteEntity;
-import ar.edu.utn.ba.capacitacion.monolito.cliente.service.ClienteService;
+import ar.edu.utn.ba.capacitacion.monolito.pedido.dto.ClienteResumen;
 import ar.edu.utn.ba.capacitacion.monolito.pedido.dto.CrearPedidoRequest;
 import ar.edu.utn.ba.capacitacion.monolito.pedido.dto.PedidoResponse;
 import ar.edu.utn.ba.capacitacion.monolito.pedido.entity.PedidoEntity;
@@ -13,27 +12,26 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class PedidoService {
 
-    private final ClienteService clienteService;
+    private final ClienteLookup clienteLookup;
     private final PedidoRepository pedidoRepository;
 
-    public PedidoService(ClienteService clienteService, PedidoRepository pedidoRepository) {
-        this.clienteService = clienteService;
+    public PedidoService(ClienteLookup clienteLookup, PedidoRepository pedidoRepository) {
+        this.clienteLookup = clienteLookup;
         this.pedidoRepository = pedidoRepository;
     }
 
     @Transactional
     public PedidoResponse crearPedido(CrearPedidoRequest request) {
-        ClienteEntity cliente = clienteService.buscarPorId(request.clienteId())
+        ClienteResumen cliente = clienteLookup.buscarPorId(request.clienteId())
                 .orElseThrow(() -> new ClienteInvalidoException("El cliente con ID " + request.clienteId() + " no existe."));
 
-        if (!cliente.isActivo()) {
+        if (!cliente.activo()) {
             throw new ClienteInvalidoException("El cliente con ID " + request.clienteId() + " se encuentra inactivo.");
         }
 
-        PedidoEntity nuevoPedido = new PedidoEntity(cliente.getId(), request.descripcion());
+        PedidoEntity nuevoPedido = new PedidoEntity(cliente.id(), request.descripcion());
         PedidoEntity pedidoGuardado = pedidoRepository.save(nuevoPedido);
 
         return new PedidoResponse(pedidoGuardado.getId());
     }
 }
-

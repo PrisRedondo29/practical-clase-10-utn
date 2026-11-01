@@ -1,0 +1,41 @@
+openapi: 3.0.3
+info:
+  title: Clientes Service API
+  version: 1.0.0
+  description: Consulta de clientes.
+servers:
+  - url: http://localhost:8091
+paths:
+  /api/clientes/{id}:
+    get:
+      summary: Consulta un cliente por id
+      operationId: buscarClientePorId
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Cliente encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClienteDetalle'
+        '404':
+          description: El cliente no existe
+components:
+  schemas:
+    ClienteDetalle:
+      type: object
+      required: [id, nombre, activo]
+      properties:
+        id:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        activo:
+          type: boolean
