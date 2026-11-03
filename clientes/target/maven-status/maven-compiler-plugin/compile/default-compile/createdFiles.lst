@@ -1,0 +1,8 @@
+service\ClienteService.class
+controller\ClienteController.class
+entity\ClienteEntity.class
+repository\ClienteRepository.class
+dto\CrearClienteRequest.class
+dto\ClienteResponse.class
+ClientesServiceApplication.class
+dto\ClienteDetalleResponse.class

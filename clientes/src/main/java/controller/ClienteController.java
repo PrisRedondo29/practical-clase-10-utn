@@ -1,10 +1,14 @@
-package ar.edu.utn.ba.capacitacion.monolito.cliente.controller;
+package controller;
 
-import ar.edu.utn.ba.capacitacion.monolito.cliente.dto.ClienteResponse;
-import ar.edu.utn.ba.capacitacion.monolito.cliente.dto.CrearClienteRequest;
-import ar.edu.utn.ba.capacitacion.monolito.cliente.service.ClienteService;
+import dto.ClienteDetalleResponse;
+import dto.ClienteResponse;
+import dto.CrearClienteRequest;
+import service.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +25,16 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteDetalleResponse> obtenerCliente(@PathVariable Long id) {
+        return clienteService.consultarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ClienteResponse crearCliente(@Valid @RequestBody CrearClienteRequest request) {
         return clienteService.crearCliente(request);
     }
 }
-

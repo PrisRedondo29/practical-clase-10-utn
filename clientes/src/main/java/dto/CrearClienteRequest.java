@@ -1,4 +1,4 @@
-package ar.edu.utn.ba.capacitacion.monolito.cliente.dto;
+package dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -11,4 +11,3 @@ public record CrearClienteRequest(
         Boolean activo
 ) {
 }
-

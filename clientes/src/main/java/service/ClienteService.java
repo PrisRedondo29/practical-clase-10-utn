@@ -1,9 +1,10 @@
-package ar.edu.utn.ba.capacitacion.monolito.cliente.service;
+package service;
 
-import ar.edu.utn.ba.capacitacion.monolito.cliente.dto.ClienteResponse;
-import ar.edu.utn.ba.capacitacion.monolito.cliente.dto.CrearClienteRequest;
-import ar.edu.utn.ba.capacitacion.monolito.cliente.entity.ClienteEntity;
-import ar.edu.utn.ba.capacitacion.monolito.cliente.repository.ClienteRepository;
+import dto.ClienteResponse;
+import dto.ClienteDetalleResponse;
+import dto.CrearClienteRequest;
+import entity.ClienteEntity;
+import repository.ClienteRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,12 @@ public class ClienteService {
     @Transactional(readOnly = true)
     public Optional<ClienteEntity> buscarPorId(Long id) {
         return clienteRepository.findById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<ClienteDetalleResponse> consultarPorId(Long id) {
+        return buscarPorId(id)
+                .map(c -> new ClienteDetalleResponse(c.getId(), c.getNombre(), c.isActivo()));
     }
 
     @Transactional

@@ -1,4 +1,4 @@
-package ar.edu.utn.ba.capacitacion.monolito.cliente.entity;
+package entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -62,4 +62,3 @@ public class ClienteEntity {
         this.activo = activo;
     }
 }
-
