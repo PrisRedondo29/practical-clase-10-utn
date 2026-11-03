@@ -1,5 +1,0 @@
-# Created at 2026-11-03T10:15:46.638
-Boot Manifest-JAR contains absolute paths in classpath 'D:\Trabajo\Capacitación para migración Java 7 a Java 21 UTN BA\Códigos\Clase 10\practical-clase-10-utn\monolito\target\test-classes'
-Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-'other' has different root
-
