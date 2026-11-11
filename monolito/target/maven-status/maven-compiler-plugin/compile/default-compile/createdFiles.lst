@@ -1,0 +1,14 @@
+ar\edu\utn\ba\capacitacion\monolito\config\KafkaTopicConfig.class
+ar\edu\utn\ba\capacitacion\monolito\pedido\entity\PedidoEntity.class
+ar\edu\utn\ba\capacitacion\monolito\pedido\service\PedidoService.class
+ar\edu\utn\ba\capacitacion\monolito\MonolitoApplication.class
+ar\edu\utn\ba\capacitacion\monolito\pedido\client\ClienteRestAdapter$ClienteHttpResponse.class
+ar\edu\utn\ba\capacitacion\monolito\pedido\controller\PedidoController.class
+ar\edu\utn\ba\capacitacion\monolito\pedido\repository\PedidoRepository.class
+ar\edu\utn\ba\capacitacion\monolito\pedido\exception\ClienteServicioNoDisponibleException.class
+ar\edu\utn\ba\capacitacion\monolito\pedido\exception\ClienteInvalidoException.class
+ar\edu\utn\ba\capacitacion\monolito\pedido\dto\PedidoResponse.class
+ar\edu\utn\ba\capacitacion\monolito\pedido\dto\CrearPedidoRequest.class
+ar\edu\utn\ba\capacitacion\monolito\pedido\client\ClienteResumen.class
+ar\edu\utn\ba\capacitacion\monolito\pedido\client\ClienteLookup.class
+ar\edu\utn\ba\capacitacion\monolito\pedido\client\ClienteRestAdapter.class

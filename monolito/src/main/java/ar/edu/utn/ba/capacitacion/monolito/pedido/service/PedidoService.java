@@ -30,7 +30,7 @@ public class PedidoService {
             throw new ClienteInvalidoException("El cliente con ID " + request.clienteId() + " se encuentra inactivo.");
         }
 
-        PedidoEntity nuevoPedido = new PedidoEntity(cliente.id(), request.descripcion());
+        PedidoEntity nuevoPedido = new PedidoEntity(cliente.id(), request.descripcion(), request.total());
         PedidoEntity pedidoGuardado = pedidoRepository.save(nuevoPedido);
 
         return new PedidoResponse(pedidoGuardado.getId());

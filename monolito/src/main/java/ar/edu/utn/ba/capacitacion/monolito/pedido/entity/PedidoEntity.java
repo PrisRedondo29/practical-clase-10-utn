@@ -7,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "pedidos")
 public class PedidoEntity {
@@ -21,18 +23,23 @@ public class PedidoEntity {
     @Column(name = "descripcion", nullable = false, length = 255)
     private String descripcion;
 
+    @Column(name = "total", nullable = false, precision = 12, scale = 2)
+    private BigDecimal total;
+
     public PedidoEntity() {
     }
 
-    public PedidoEntity(Long clienteId, String descripcion) {
+    public PedidoEntity(Long clienteId, String descripcion, BigDecimal total) {
         this.clienteId = clienteId;
         this.descripcion = descripcion;
+        this.total = total;
     }
 
-    public PedidoEntity(Long id, Long clienteId, String descripcion) {
+    public PedidoEntity(Long id, Long clienteId, String descripcion, BigDecimal total) {
         this.id = id;
         this.clienteId = clienteId;
         this.descripcion = descripcion;
+        this.total = total;
     }
 
     public Long getId() {
@@ -58,5 +65,14 @@ public class PedidoEntity {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
 }
+
 
