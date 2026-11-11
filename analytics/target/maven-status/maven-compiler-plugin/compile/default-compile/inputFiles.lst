@@ -2,5 +2,7 @@ D:\Trabajo\Capacitación para migración Java 7 a Java 21 UTN BA\Códigos\Clase 
 D:\Trabajo\Capacitación para migración Java 7 a Java 21 UTN BA\Códigos\Clase 10\practical-clase-10-utn\analytics\src\main\java\ar\edu\utn\ba\capacitacion\analytics\controller\AnalyticsController.java
 D:\Trabajo\Capacitación para migración Java 7 a Java 21 UTN BA\Códigos\Clase 10\practical-clase-10-utn\analytics\src\main\java\ar\edu\utn\ba\capacitacion\analytics\dto\AnalyticsResumenResponse.java
 D:\Trabajo\Capacitación para migración Java 7 a Java 21 UTN BA\Códigos\Clase 10\practical-clase-10-utn\analytics\src\main\java\ar\edu\utn\ba\capacitacion\analytics\entity\EventoPedidoRecibidoEntity.java
+D:\Trabajo\Capacitación para migración Java 7 a Java 21 UTN BA\Códigos\Clase 10\practical-clase-10-utn\analytics\src\main\java\ar\edu\utn\ba\capacitacion\analytics\evento\PedidoCreado.java
+D:\Trabajo\Capacitación para migración Java 7 a Java 21 UTN BA\Códigos\Clase 10\practical-clase-10-utn\analytics\src\main\java\ar\edu\utn\ba\capacitacion\analytics\kafka\PedidoCreadoListener.java
 D:\Trabajo\Capacitación para migración Java 7 a Java 21 UTN BA\Códigos\Clase 10\practical-clase-10-utn\analytics\src\main\java\ar\edu\utn\ba\capacitacion\analytics\repository\EventoPedidoRecibidoRepository.java
 D:\Trabajo\Capacitación para migración Java 7 a Java 21 UTN BA\Códigos\Clase 10\practical-clase-10-utn\analytics\src\main\java\ar\edu\utn\ba\capacitacion\analytics\service\AnalyticsService.java

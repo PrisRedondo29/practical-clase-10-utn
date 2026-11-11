@@ -8,7 +8,9 @@ ar\edu\utn\ba\capacitacion\monolito\pedido\repository\PedidoRepository.class
 ar\edu\utn\ba\capacitacion\monolito\pedido\exception\ClienteServicioNoDisponibleException.class
 ar\edu\utn\ba\capacitacion\monolito\pedido\exception\ClienteInvalidoException.class
 ar\edu\utn\ba\capacitacion\monolito\pedido\dto\PedidoResponse.class
+ar\edu\utn\ba\capacitacion\monolito\pedido\kafka\PedidoEventPublisher.class
 ar\edu\utn\ba\capacitacion\monolito\pedido\dto\CrearPedidoRequest.class
 ar\edu\utn\ba\capacitacion\monolito\pedido\client\ClienteResumen.class
+ar\edu\utn\ba\capacitacion\monolito\pedido\evento\PedidoCreado.class
 ar\edu\utn\ba\capacitacion\monolito\pedido\client\ClienteLookup.class
 ar\edu\utn\ba\capacitacion\monolito\pedido\client\ClienteRestAdapter.class

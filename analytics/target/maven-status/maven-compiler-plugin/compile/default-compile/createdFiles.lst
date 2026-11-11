@@ -3,4 +3,6 @@ ar\edu\utn\ba\capacitacion\analytics\service\AnalyticsService.class
 ar\edu\utn\ba\capacitacion\analytics\controller\AnalyticsController.class
 ar\edu\utn\ba\capacitacion\analytics\AnalyticsApplication.class
 ar\edu\utn\ba\capacitacion\analytics\dto\AnalyticsResumenResponse.class
+ar\edu\utn\ba\capacitacion\analytics\kafka\PedidoCreadoListener.class
 ar\edu\utn\ba\capacitacion\analytics\repository\EventoPedidoRecibidoRepository.class
+ar\edu\utn\ba\capacitacion\analytics\evento\PedidoCreado.class

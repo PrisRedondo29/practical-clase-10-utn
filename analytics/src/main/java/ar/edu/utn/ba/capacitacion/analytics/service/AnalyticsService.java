@@ -1,12 +1,15 @@
 package ar.edu.utn.ba.capacitacion.analytics.service;
 
 import ar.edu.utn.ba.capacitacion.analytics.dto.AnalyticsResumenResponse;
+import ar.edu.utn.ba.capacitacion.analytics.entity.EventoPedidoRecibidoEntity;
+import ar.edu.utn.ba.capacitacion.analytics.evento.PedidoCreado;
 import ar.edu.utn.ba.capacitacion.analytics.repository.EventoPedidoRecibidoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.Instant;
 
 @Service
 public class AnalyticsService {
@@ -31,5 +34,20 @@ public class AnalyticsService {
         BigDecimal promedio = total.divide(BigDecimal.valueOf(cantidad), 2, RoundingMode.HALF_UP);
 
         return new AnalyticsResumenResponse(cantidad, total, promedio);
+    }
+
+    @Transactional
+    public void registrarPedidoCreado(PedidoCreado evento) {
+        EventoPedidoRecibidoEntity registro =
+                new EventoPedidoRecibidoEntity(
+                        evento.eventId(),
+                        evento.pedidoId(),
+                        evento.clienteId(),
+                        evento.total(),
+                        evento.occurredAt(),
+                        Instant.now()
+                );
+
+        repository.save(registro);
     }
 }
