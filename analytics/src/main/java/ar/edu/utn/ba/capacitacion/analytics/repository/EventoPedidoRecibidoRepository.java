@@ -12,4 +12,5 @@ public interface EventoPedidoRecibidoRepository extends JpaRepository<EventoPedi
 
     @Query("SELECT COALESCE(SUM(e.total), 0) FROM EventoPedidoRecibidoEntity e")
     BigDecimal sumarTotal();
+    boolean existsByEventId(String eventId);
 }

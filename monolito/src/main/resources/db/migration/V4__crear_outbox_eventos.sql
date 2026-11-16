@@ -1,0 +1,12 @@
+CREATE TABLE outbox_eventos (
+    event_id VARCHAR2(100) PRIMARY KEY,
+    topic VARCHAR2(150) NOT NULL,
+    clave VARCHAR2(100) NOT NULL,
+    payload CLOB NOT NULL,
+    estado VARCHAR2(20) DEFAULT 'PENDIENTE' NOT NULL,
+    creado_en TIMESTAMP WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL,
+    publicado_en TIMESTAMP WITH TIME ZONE,
+
+    CONSTRAINT ck_outbox_estado
+        CHECK (estado IN ('PENDIENTE', 'PUBLICADO'))
+);
