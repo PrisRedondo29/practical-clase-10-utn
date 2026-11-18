@@ -1,7 +1,6 @@
 package ar.edu.utn.ba.capacitacion.monolito.pedido.service;
 
 import ar.edu.utn.ba.capacitacion.monolito.outbox.OutboxRepository;
-import ar.edu.utn.ba.capacitacion.monolito.config.KafkaTopicConfig;
 import ar.edu.utn.ba.capacitacion.monolito.pedido.client.ClienteLookup;
 import ar.edu.utn.ba.capacitacion.monolito.pedido.client.ClienteResumen;
 import ar.edu.utn.ba.capacitacion.monolito.pedido.dto.CrearPedidoRequest;
@@ -12,6 +11,7 @@ import ar.edu.utn.ba.capacitacion.monolito.pedido.exception.ClienteInvalidoExcep
 import ar.edu.utn.ba.capacitacion.monolito.pedido.repository.PedidoRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,16 +25,19 @@ public class PedidoService {
     private final PedidoRepository pedidoRepository;
     private final OutboxRepository outboxRepository;
     private final ObjectMapper objectMapper;
+    private final String pedidosCreadoTopic;
 
     public PedidoService(
             ClienteLookup clienteLookup,
             PedidoRepository pedidoRepository,
             OutboxRepository outboxRepository,
-            ObjectMapper objectMapper) {
+            ObjectMapper objectMapper,
+            @Value("${app.kafka.topics.pedidos-creado}") String pedidosCreadoTopic) {
         this.clienteLookup = clienteLookup;
         this.pedidoRepository = pedidoRepository;
         this.outboxRepository = outboxRepository;
         this.objectMapper = objectMapper;
+        this.pedidosCreadoTopic = pedidosCreadoTopic;
     }
 
     @Transactional
@@ -60,7 +63,7 @@ public class PedidoService {
         try {
             outboxRepository.guardar(
                     evento.eventId(),
-                    KafkaTopicConfig.PEDIDOS_CREADO_TOPIC,
+                    pedidosCreadoTopic,
                     evento.pedidoId().toString(),
                     objectMapper.writeValueAsString(evento)
             );

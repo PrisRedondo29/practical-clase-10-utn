@@ -1,9 +1,9 @@
 package ar.edu.utn.ba.capacitacion.monolito.pedido.kafka;
 
-import ar.edu.utn.ba.capacitacion.monolito.config.KafkaTopicConfig;
 import ar.edu.utn.ba.capacitacion.monolito.pedido.evento.PedidoCreado;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
@@ -14,15 +14,18 @@ public class PedidoEventPublisher {
             LoggerFactory.getLogger(PedidoEventPublisher.class);
 
     private final KafkaTemplate<String, PedidoCreado> kafkaTemplate;
+    private final String pedidosCreadoTopic;
 
     public PedidoEventPublisher(
-            KafkaTemplate<String, PedidoCreado> kafkaTemplate) {
+            KafkaTemplate<String, PedidoCreado> kafkaTemplate,
+            @Value("${app.kafka.topics.pedidos-creado}") String pedidosCreadoTopic) {
         this.kafkaTemplate = kafkaTemplate;
+        this.pedidosCreadoTopic = pedidosCreadoTopic;
     }
 
     public void publicar(PedidoCreado evento) {
         kafkaTemplate.send(
-                KafkaTopicConfig.PEDIDOS_CREADO_TOPIC,
+                pedidosCreadoTopic,
                 evento.pedidoId().toString(),
                 evento
         ).whenComplete((resultado, error) -> {

@@ -3,6 +3,7 @@ package ar.edu.utn.ba.capacitacion.analytics.config;
 import ar.edu.utn.ba.capacitacion.analytics.evento.PedidoCreado;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.clients.admin.NewTopic;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
@@ -15,9 +16,10 @@ import org.springframework.util.backoff.FixedBackOff;
 public class KafkaErrorConfig {
 
     @Bean
-    public NewTopic pedidosCreadoDlt() {
+    public NewTopic pedidosCreadoDlt(
+            @Value("${app.kafka.topics.pedidos-creado}") String pedidosCreadoTopic) {
         return TopicBuilder
-                .name("pedidos.creado.v1.DLT")
+                .name(pedidosCreadoTopic + ".DLT")
                 .partitions(3)
                 .replicas(1)
                 .build();
