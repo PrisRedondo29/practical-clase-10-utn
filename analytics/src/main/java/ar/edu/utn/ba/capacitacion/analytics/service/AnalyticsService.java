@@ -38,6 +38,10 @@ public class AnalyticsService {
 
     @Transactional
     public void registrarPedidoCreado(PedidoCreado evento) {
+        if (repository.existsByEventId(evento.eventId())) {
+            return;
+        }
+
         EventoPedidoRecibidoEntity registro =
                 new EventoPedidoRecibidoEntity(
                         evento.eventId(),
