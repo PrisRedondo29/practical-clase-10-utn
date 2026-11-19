@@ -1,1 +1,5 @@
+ar\edu\utn\ba\capacitacion\analytics\AnalyticsKafkaFailuresTest$ConfiguracionTest.class
 ar\edu\utn\ba\capacitacion\analytics\AnalyticsContextSmokeTest.class
+ar\edu\utn\ba\capacitacion\analytics\AnalyticsKafkaFailuresTest$FallasControladas.class
+ar\edu\utn\ba\capacitacion\analytics\AnalyticsKafkaIntegrationTest.class
+ar\edu\utn\ba\capacitacion\analytics\AnalyticsKafkaFailuresTest.class
