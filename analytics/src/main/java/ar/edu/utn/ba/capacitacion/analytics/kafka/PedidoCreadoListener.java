@@ -34,7 +34,7 @@ public class PedidoCreadoListener {
         this.fallaPersistenteActiva = fallaPersistenteActiva;
     }
 
-    @KafkaListener(topics = "${app.kafka.topics.pedidos-creado}")
+    @KafkaListener(topics = "${app.kafka.topic.pedido-creado}")
     public void recibir(ConsumerRecord<String, PedidoCreado> registro) {
 
         PedidoCreado evento = registro.value();

@@ -17,7 +17,7 @@ public class KafkaErrorConfig {
 
     @Bean
     public NewTopic pedidosCreadoDlt(
-            @Value("${app.kafka.topics.pedidos-creado}") String pedidosCreadoTopic) {
+            @Value("${app.kafka.topic.pedido-creado}") String pedidosCreadoTopic) {
         return TopicBuilder
                 .name(pedidosCreadoTopic + ".DLT")
                 .partitions(3)
