@@ -1,6 +1,19 @@
 # Compiled class file
 *.class
 
+# Build and dependency directories
+target/
+**/target/
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
 # Log file
 *.log
 
