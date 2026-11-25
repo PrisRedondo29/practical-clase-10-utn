@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pedidos-config
+data:
+  DB_URL: "jdbc:oracle:thin:@//host.docker.internal:1521/XEPDB1"
+  DB_USERNAME: "clase10"
+  CLIENTES_SERVICE_BASE_URL: "http://host.docker.internal:8091"
+  APP_OUTBOX_PUBLISHER_ENABLED: "false"

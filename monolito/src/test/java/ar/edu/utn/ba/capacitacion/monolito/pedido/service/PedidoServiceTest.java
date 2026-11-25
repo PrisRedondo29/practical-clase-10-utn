@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -32,6 +33,9 @@ class PedidoServiceTest {
     @Mock
     private OutboxRepository outboxRepository;
 
+    @Mock
+    private ApplicationEventPublisher applicationEventPublisher;
+
     private PedidoService service;
 
     @BeforeEach
@@ -41,7 +45,8 @@ class PedidoServiceTest {
                 pedidoRepository,
                 outboxRepository,
                 new ObjectMapper().findAndRegisterModules(),
-                "pedidos.creado.v2"
+                "pedidos.creado.v2",
+                applicationEventPublisher
         );
     }
 
@@ -65,7 +70,8 @@ class PedidoServiceTest {
 
         verifyNoInteractions(
                 pedidoRepository,
-                outboxRepository
+                outboxRepository,
+                applicationEventPublisher
         );
     }
 }

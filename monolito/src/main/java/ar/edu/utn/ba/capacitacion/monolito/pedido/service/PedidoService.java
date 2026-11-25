@@ -12,6 +12,7 @@ import ar.edu.utn.ba.capacitacion.monolito.pedido.repository.PedidoRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,18 +27,21 @@ public class PedidoService {
     private final OutboxRepository outboxRepository;
     private final ObjectMapper objectMapper;
     private final String pedidosCreadoTopic;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     public PedidoService(
             ClienteLookup clienteLookup,
             PedidoRepository pedidoRepository,
             OutboxRepository outboxRepository,
             ObjectMapper objectMapper,
-            @Value("${app.kafka.topics.pedidos-creado}") String pedidosCreadoTopic) {
+            @Value("${app.kafka.topics.pedidos-creado}") String pedidosCreadoTopic,
+            ApplicationEventPublisher applicationEventPublisher) {
         this.clienteLookup = clienteLookup;
         this.pedidoRepository = pedidoRepository;
         this.outboxRepository = outboxRepository;
         this.objectMapper = objectMapper;
         this.pedidosCreadoTopic = pedidosCreadoTopic;
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     @Transactional
@@ -70,6 +74,10 @@ public class PedidoService {
         } catch (JsonProcessingException e) {
             throw new IllegalStateException("No se pudo serializar PedidoCreado", e);
         }
+
+        applicationEventPublisher.publishEvent(
+                new PedidoConfirmadoInterno(pedidoGuardado.getId())
+        );
 
         return new PedidoResponse(pedidoGuardado.getId());
     }

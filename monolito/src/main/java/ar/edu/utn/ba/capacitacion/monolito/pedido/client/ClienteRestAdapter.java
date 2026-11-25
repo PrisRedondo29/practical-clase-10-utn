@@ -12,11 +12,15 @@ import org.springframework.web.client.RestClientException;
 import java.net.http.HttpClient;
 import java.time.Duration;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Component
 public class ClienteRestAdapter implements ClienteLookup {
 
     private final RestClient restClient;
+    private static final Logger logger =
+        LoggerFactory.getLogger(ClienteRestAdapter.class);
 
     public ClienteRestAdapter(
             @Value("${clientes.service.base-url}") String baseUrl,
@@ -46,6 +50,7 @@ public class ClienteRestAdapter implements ClienteLookup {
         } catch (HttpClientErrorException.NotFound e) {
             return Optional.empty();
         } catch (RestClientException e) {
+            logger.warn("No se pudo consultar Clientes para clienteId={}", id, e);
             // 5xx, otros 4xx, timeout, conexión rechazada, respuesta ilegible
             throw new ClienteServicioNoDisponibleException(
                     "No se pudo consultar el servicio de clientes para el ID " + id + ".", e);
