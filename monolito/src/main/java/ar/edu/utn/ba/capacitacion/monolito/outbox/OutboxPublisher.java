@@ -2,6 +2,7 @@ package ar.edu.utn.ba.capacitacion.monolito.outbox;
 
 import ar.edu.utn.ba.capacitacion.monolito.pedido.evento.PedidoCreado;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -9,6 +10,11 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.TimeUnit;
 
 @Component
+@ConditionalOnProperty(
+        name = "app.outbox.publisher.enabled",
+        havingValue = "true",
+        matchIfMissing = true
+)
 public class OutboxPublisher {
 
     private final OutboxRepository repository;

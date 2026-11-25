@@ -1,0 +1,12 @@
+# Excluir todo por defecto y permitir únicamente el JAR requerido por el Dockerfile
+*
+!target/
+!target/monolito-1.0.0-SNAPSHOT.jar
+
+# Exclusión explícita de logs, archivos de entorno y código fuente
+*.log
+debug-run.log
+.env
+.env.*
+src/
+pom.xml
